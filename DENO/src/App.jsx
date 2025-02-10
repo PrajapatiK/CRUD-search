@@ -78,6 +78,7 @@ function App() {
         formData={formData}
       />
       <br />
+      <br />
       <TableData state={state} />
     </>
   );
