@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import SearchInput from "./components/searchInput";
+import FormInput from "./components/formInput";
+import TableData from "./components/tableData";
 
 function App() {
   const initialState = {
@@ -66,110 +69,16 @@ function App() {
 
   return (
     <>
-      <input
-        type="text"
-        placeholder="Search"
-        onChange={handleSearch}
-        value={search}
+      <SearchInput handleSearch={handleSearch} search={search} />
+      <br />
+      <br />
+      <FormInput
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+        formData={formData}
       />
       <br />
-      <br />
-      <form onSubmit={handleSubmit}>
-        First Name:{" "}
-        <input
-          type="text"
-          name="fName"
-          onChange={handleChange}
-          value={formData.fName}
-        />
-        <br />
-        <br />
-        Last Name:{" "}
-        <input
-          type="text"
-          name="lName"
-          onChange={handleChange}
-          value={formData.lName}
-        />
-        <br />
-        <br />
-        Department:{" "}
-        <input
-          type="text"
-          name="dept"
-          onChange={handleChange}
-          value={formData.dept}
-        />
-        <br />
-        <br />
-        Role:{" "}
-        <input
-          type="text"
-          name="role"
-          onChange={handleChange}
-          value={formData.role}
-        />
-        <br />
-        <br />
-        Date of Joining:{" "}
-        <input
-          type="date"
-          name="doj"
-          onChange={handleChange}
-          value={formData.doj}
-        />
-        <br />
-        <br />
-        Seniority:{" "}
-        <input
-          type="text"
-          name="seniority"
-          onChange={handleChange}
-          value={formData.seniority}
-        />
-        <br />
-        <br />
-        <button type="submit">ADD</button>
-      </form>
-      <br />
-      <table style={{ border: "1px solid gray" }}>
-        <tr>
-          <th>User ID</th>
-          <th>User Name</th>
-
-          <th>role</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Department</th>
-          <th>Date of Joining</th>
-          <th>Manager ID</th>
-
-          <th>Seniority</th>
-          <th>Employee Code</th>
-        </tr>
-        <tbody>
-          {state.length > 0 ? state.map((user) => {
-            return (
-              <tr key={user.userId}>
-                <td>{user.userId}</td>
-                <td>{user.userName}</td>
-
-                <td>{user.role}</td>
-                <td>{user.fName}</td>
-                <td>{user.lName}</td>
-                <td>{user.dept}</td>
-                <td>{user.doj}</td>
-                <td>{user.mngrId}</td>
-
-                <td>{user.seniority}</td>
-                <td>{user.empCode}</td>
-              </tr>
-
-              // <p key={user?.userId}>{user?.dept}</p>
-            );
-          }): <p style={{ textAlign: 'center', width: '100%' }}>No Record Found</p>}
-        </tbody>
-      </table>
+      <TableData state={state} />
     </>
   );
 }
