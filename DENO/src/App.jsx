@@ -61,7 +61,7 @@ function App() {
 
   const handleSearch = (e) => {
     setSearch(e.target.value);
-    getData({ fName: e.target.value });
+    getData({ query: e.target.value });
   };
 
   return (
@@ -131,6 +131,7 @@ function App() {
         <br />
         <button type="submit">ADD</button>
       </form>
+      <br />
       <table style={{ border: "1px solid gray" }}>
         <tr>
           <th>User ID</th>
