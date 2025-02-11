@@ -16,7 +16,8 @@ module.exports.addUser = async (req, res) => {
 
     res.status(200).json({ data: newUser, message: "New User created" });
   } catch (err) {
-    res.status(200).json({ error: err });
+    console.log(err, err.message);
+    res.status(400).json({ error: err });
   }
 };
 
@@ -43,6 +44,6 @@ module.exports.getUser = async (req, res) => {
 
     res.status(200).json({ data: userData });
   } catch (err) {
-    res.status(200).json({ error: err });
+    res.status(400).json({ error: err });
   }
 };

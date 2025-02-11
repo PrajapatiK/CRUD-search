@@ -3,6 +3,7 @@ import "./App.css";
 import SearchInput from "./components/searchInput";
 import FormInput from "./components/formInput";
 import TableData from "./components/tableData";
+import useDebounce from "./hooks/useDebounce";
 
 function App() {
   const initialState = {
@@ -21,6 +22,7 @@ function App() {
   const [state, setState] = useState([]);
   const [formData, setFormData] = useState(initialState);
   const [search, setSearch] = useState("");
+  const debouncedSearch = useDebounce(search, 500);
 
   useEffect(() => {
     getData({});
@@ -64,8 +66,14 @@ function App() {
 
   const handleSearch = (e) => {
     setSearch(e.target.value);
-    getData({ query: e.target.value });
+    // getData({ query: e.target.value });
   };
+
+  useEffect(() => {
+    // if (debouncedSearch) {
+    getData({ query: debouncedSearch });
+    // }
+  }, [debouncedSearch]);
 
   return (
     <>
